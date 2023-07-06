@@ -1,34 +1,60 @@
-#include<stdio.h>
-#include<ctype.h>
-int main(){
-    char text[100],encrypt[100],decrypt[100];
-    int key=3;
-    printf("enter the text: \n");
-    scanf("%s",text);
-    printf("Text is:%s\n",text);
-    for (int i = 0; text[i]!='\0'; i++)
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+int main()
+{
+    char text[50], encrypt[50], decrypt[50];
+    int key, i;
+    printf("Enter the plain text: ");
+    scanf("%[^\n]s", text); // untill \n is encountered
+    printf("Original text: %s\n",text);
+    printf("Enter the Key value: ");
+    scanf("%d", &key);
+    int len = strlen(text);
+
+    // encryption
+    for (i = 0; i < len; i++)
     {
-        char ch=text[i];
-        if(isupper(ch)){
-            ch='A'+(ch-'A'+key)%26;
+        char ch = text[i];
+        if (isupper(ch))
+        {
+            ch = 'A' + (ch - 'A' + key) % 26;
         }
-        else if(islower(ch)){
-            ch='a'+(ch-'a'+key)%26;
+        else if (islower(ch))
+        {
+            ch = 'a' + (ch - 'a' + key) % 26;
         }
-        encrypt[i]=ch;
+        else if (isalnum(ch))
+        {
+            ch = '0' + (ch - '0' + key) % 26;
+        }
+        encrypt[i] = ch;
     }
-    printf("cipher text is: %s\n",encrypt);
-    for(int i=0;encrypt[i]!='\0';i++)
+    encrypt[i] = '\0';
+
+    printf("The Encrypted text is: %s \n", encrypt);
+
+    // decryption
+    for (i = 0; i < len; i++)
     {
-        char ch=encrypt[i];
-        if(isupper(ch)){
-            ch='A'+(ch-'A'-key+26)%26;
+        char ch = encrypt[i];
+        if (isupper(ch))
+        {
+            ch =  'A'+ (ch - 'A' - key + 26) % 26 ;
         }
-        else if(islower(ch)){
+        else if(islower(ch))
+        {
             ch='a'+(ch-'a'-key+26)%26;
+        }
+        else if(isalnum(ch))
+        {
+            ch='0'+(ch-'0'-key+26)%26;
         }
         decrypt[i]=ch;
     }
-    printf("after decryption: %s\n",decrypt);
+    decrypt[i]='\0';
+
+    printf("The Decrypted text is: %s\n",decrypt);
+
     return 0;
 }
