@@ -68,13 +68,19 @@ void inverse()
     int i, j, k;
     float p, q;
     for (i = 0; i < z; i++)
+    {
         for (j = 0; j < z; j++)
         {
             if (i == j)
+            {
                 b[i][j] = 1;
+            }
             else
+            {
                 b[i][j] = 0;
+            }
         }
+    }
     for (k = 0; k < z; k++)
     {
         for (i = 0; i < z; i++)
@@ -92,13 +98,19 @@ void inverse()
         }
     }
     for (i = 0; i < z; i++)
+    {
         for (j = 0; j < z; j++)
+        {
             b[i][j] = b[i][j] / c[i][i];
-    printf("\n\nInverse Matrix is:\n");
+        }
+    }
+    printf("\nInverse Matrix is: \n");
     for (i = 0; i < z; i++)
     {
         for (j = 0; j < z; j++)
-            printf("%d ", b[i][j]);
+        {
+            printf("%f ", b[i][j]);
+        }
         printf("\n");
     }
 }
