@@ -24,10 +24,12 @@ int main(){
     printf("Enter the value of x1 for first person:\n");
     scanf("%d",&x1);
     y1=power(alpha,x1,q);
+    printf("Public key of the first person y1: %d\n",y1);
     printf("Enter the value of x2 for second person:\n");
     scanf("%d",&x2);
     y2=power(alpha,x2,q);
-    printf("Key for first person: %d\n",power(y2,x1,q));
-    printf("Key for second person: %d\n",power(y1,x2,q));
+    printf("Public key of the first person y2: %d\n",y2);
+    printf("Key for first person: %ld\n",power(y2,x1,q));
+    printf("Key for second person: %ld\n",power(y1,x2,q));
     return 0;
 }
